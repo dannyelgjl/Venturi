@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Login from './pages/login';
-import Product from './pages/product';
-import Storage from './pages/storage';
+import Login from './pages/Login';
+import Product from './pages/Product';
+import Storage from './pages/Storage';
 
 const Routes = () => {
   return (
