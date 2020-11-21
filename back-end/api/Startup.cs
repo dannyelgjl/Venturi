@@ -30,6 +30,7 @@ namespace api
       services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
       services.AddScoped<DataContext, DataContext>();
       services.AddControllers();
+      services.AddCors(options => options.AddDefaultPolicy(builder => builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +46,8 @@ namespace api
       app.UseRouting();
 
       app.UseAuthorization();
+
+      app.UseCors();
 
       app.UseEndpoints(endpoints =>
       {
