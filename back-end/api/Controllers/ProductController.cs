@@ -61,5 +61,36 @@ namespace api.Controllers
         return BadRequest(ModelState);
       }
     }
+
+    [HttpPut]
+    [Route("")]
+    public async Task<ActionResult<Product>> Put(
+      [FromServices] DataContext context,
+      [FromBody] Product model)
+    {
+      if (ModelState.IsValid)
+      {
+        context.Products.Update(model);
+        await context.SaveChangesAsync();
+        return model;
+      }
+      else
+      {
+        return BadRequest(ModelState);
+      }
+    }
+
+    [HttpDelete]
+    [Route("")]
+    public async Task<string> Delete(
+      [FromServices] DataContext context,
+      [FromBody] Product model)
+    {
+      context.Products.Remove(model);
+      await context.SaveChangesAsync();
+      return $"Produto deletado: {model.Title}";
+    }
+
+
   }
 }

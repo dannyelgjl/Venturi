@@ -19,9 +19,13 @@ namespace api.Models
     public string Description { get; set; }
 
     [Required(ErrorMessage = "Este campo é obrigatório")]
-    [Range(1, int.MaxValue, ErrorMessage = "O preço deve ser maior que zero")]
 
     public decimal Price { get; set; }
+
+
+    [Range(1, 10000, ErrorMessage = "Máximo de 10000 produtos")]
+
+    public int Stock { get; set; }
 
     [Required(ErrorMessage = "Este campo é obrigatório")]
     [Range(1, int.MaxValue, ErrorMessage = "Categoria inválida")]
