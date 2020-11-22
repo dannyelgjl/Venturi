@@ -1,12 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
 
 const Storage = () => {
   const [title, setTitle] = useState("");
   const [storages, setStorages] = useState([]);
   
-  const submit = useCallback(async () => {
+  const handleSubmit = useCallback(async (event) => {
+    event.preventDefault();
     const response = await api.post('categories', {
       title
     });
@@ -25,27 +25,25 @@ const Storage = () => {
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input 
           value={title}
           onChange={e => setTitle(e.target.value)}
           type="text"
         />
-        <Link onClick={submit} to="/storage" type="button">add</Link>
+        <button type="submit">add</button>
       </form>
 
-      <div>
+      <div style={{color: "white", flexDirection: "row", display: "flex"}}>
         {storages.map(storage => (
-        <div key={storage.id}>
+        <div style={{ margin: "10px 10px" }}  key={storage.id}>
+           <h1  >{storage.id}</h1>
            <h1>{storage.title}</h1>
-           <h1>{storage.id}</h1>
         </div>
-          
         ))}
       </div>
     </>
-
-  )
+  );
 }
 
 export default Storage;
