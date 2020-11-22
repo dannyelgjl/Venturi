@@ -1,5 +1,28 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { darken } from 'polished';
+
+
+export const StyledLink = styled(Link)`
+      background: #545454;
+      width: 150px;
+      margin: 0 0 10px;
+      padding: 10px;
+      color: #fff;
+      border: 0;
+      border-radius: 4px;
+      overflow: hidden;
+      text-decoration: none;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.2s;
+
+      &:hover {
+        background: ${darken(0.03, '#545454' )}
+      }
+`;
 
 export const ProductList = styled.ul`
   display: grid;

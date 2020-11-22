@@ -11,7 +11,7 @@ import logo from '../assets/images/logo.svg';
 const Header = () => {
   return (
     <Container>
-      <Link to="/">
+      <Link to="/product">
         <img src={logo} alt="ProductFast"/>
       </Link>
 

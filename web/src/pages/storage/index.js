@@ -1,5 +1,10 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../../services/api';
+
+import Button from '../../components/Button';
+
+import { StorageList, Container } from './styles';
 
 const Storage = () => {
   const [title, setTitle] = useState("");
@@ -24,25 +29,27 @@ const Storage = () => {
 
 
   return (
-    <>
+    <Container>      
       <form onSubmit={handleSubmit}>
         <input 
+          placeholder="Digite o nome do seu Armazém..."
           value={title}
           onChange={e => setTitle(e.target.value)}
           type="text"
         />
-        <button type="submit">add</button>
+        <Button type="submit">Criar</Button>
       </form>
 
-      <div style={{color: "white", flexDirection: "row", display: "flex"}}>
+      <StorageList>
         {storages.map(storage => (
-        <div style={{ margin: "10px 10px" }}  key={storage.id}>
-           <h1  >{storage.id}</h1>
-           <h1>{storage.title}</h1>
-        </div>
+          <li key={storage.id}>
+            <strong>{storage.id}</strong>
+            <span>{storage.title}</span>
+            <Link to="/createproduct">Crie seus Produtos</Link>
+          </li>
         ))}
-      </div>
-    </>
+      </StorageList>
+    </Container>
   );
 }
 
