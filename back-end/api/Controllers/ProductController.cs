@@ -5,13 +5,16 @@ using Microsoft.EntityFrameworkCore;
 using api.Data;
 using api.Models;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace api.Controllers
 {
+
   [ApiController]
   [Route("v1/products")]
   public class ProductController : ControllerBase
   {
+    [Authorize]
     [HttpGet]
     [Route("")]
     public async Task<ActionResult<List<Product>>> Get([FromServices] DataContext context)
@@ -20,7 +23,7 @@ namespace api.Controllers
       return products;
     }
 
-
+    [Authorize]
     [HttpGet]
     [Route("{id:int}")]
     public async Task<ActionResult<Product>> GetById([FromServices] DataContext context, int id)
@@ -31,6 +34,7 @@ namespace api.Controllers
       return product;
     }
 
+    [Authorize]
     [HttpGet]
     [Route("categories/{id:int}")]
     public async Task<ActionResult<List<Product>>> GetByCategory([FromServices] DataContext context, int id)
@@ -43,7 +47,7 @@ namespace api.Controllers
       return products;
     }
 
-
+    [Authorize]
     [HttpPost]
     [Route("")]
     public async Task<ActionResult<Product>> Post(
@@ -62,6 +66,7 @@ namespace api.Controllers
       }
     }
 
+    [Authorize]
     [HttpPut]
     [Route("")]
     public async Task<ActionResult<Product>> Put(
@@ -80,6 +85,7 @@ namespace api.Controllers
       }
     }
 
+    [Authorize]
     [HttpDelete]
     [Route("")]
     public async Task<string> Delete(

@@ -1,18 +1,43 @@
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using api.Data;
 using api.Models;
+using Microsoft.AspNetCore.Authorization;
+using UseRepository.Repositories;
+using api.Services;
 
-namespace Sessions.Repositories
+namespace api.Controllers
 {
-  public static class UserRepository
+  [ApiController]
+  [Route("v1/session")]
+  public class SessionController : ControllerBase
   {
-    public static User Get(string email, string password)
+    [HttpPost]
+    [Route("")]
+    public async Task<ActionResult<dynamic>> Authenticate([FromBody] User model)
     {
-      var users = new List<User>();
-      users.Add(new User { Id = 1, email = "daniel@daniel.com", Password = "daniel" });
-      return users
-              .Where(x => x.email.ToLower() == email.ToLower() && x.Password == x.Password)
-                .FirstOrDefault();
+      // Recupera o usuário
+      var user = UserRepository.Get(model.email, model.password);
+
+      // Verifica se o usuário existe
+      if (user == null)
+        return NotFound(new { message = "Usuário ou senha inválidos" });
+
+      // Gera o Token
+      var token = TokenService.GenerateToken(user);
+
+      // Oculta a senha
+      user.password = "";
+
+      // Retorna os dados
+      return new
+      {
+        user = user,
+        token = token
+      };
+
     }
   }
 }
