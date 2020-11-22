@@ -10,20 +10,16 @@ const Login = () => {
     <Container>
       <Content>
         <img src={logoImg} alt="Logo"/>
-      
-      <form>
-        <h1>Faça seu login</h1>
-        <input placeholder="E-mail" type="text"/>
-        <input placeholder="Senha" type="password"/>
-        <button type="submit" >Entrar</button>
-
-        <a href="#">
-        <FiLogIn />
-        Criar conta
-      </a>
-      </form>
-
-      
+        <form>
+          <h1>Faça seu login</h1>
+          <input placeholder="E-mail" type="text"/>
+          <input placeholder="Senha" type="password"/>
+          <button type="submit" >Entrar</button>
+            <a href="#">
+              <FiLogIn />
+              Criar conta
+            </a>
+        </form>
       </Content>
     </Container>
   )
