@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
+import history from './services/history';
 import { Provider } from 'react-redux';
 
 import store from './store';
@@ -11,10 +12,10 @@ import Routes from './routes';
 const App = () => {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <Router history={history}>
         <Routes />
         <GlobalStyles />
-      </BrowserRouter>
+      </Router>
     </Provider>
   );
 }
