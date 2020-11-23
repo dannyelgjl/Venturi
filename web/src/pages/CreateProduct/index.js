@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+
 import api from '../../services/api';
 
 import Button from '../../components/Button';
@@ -8,11 +9,15 @@ import { Container } from './styles';
 
 const CreateProduct = () => {
   const history = useHistory();
+  const location = useLocation();
+
+  const categoryId = location.state.data;
+
+  console.log(categoryId);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState();
-  const [categoryId, setCategoryId] = useState();
   const [stock, setStock] = useState();
 
   const handleSubmit = useCallback(async (event) => {
@@ -54,17 +59,12 @@ const CreateProduct = () => {
             onChange={e => setDescription(e.target.value)}
             />
           <input
-            placeholder="Armazém"
-            type="text"
-            value={categoryId}
-            onChange={e => setCategoryId(e.target.value)}
-            />
-          <input
             placeholder="Quantidade de estoque disponível"
             type="text"
             value={stock}
             onChange={e => setStock(e.target.value)}
           />
+
           <Button type="submit">Criar</Button>
         </form>
       </Container>

@@ -1,12 +1,16 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
+import { useParams } from 'react-router-dom';
 
 import Button from '../../components/Button';
 
 import { StorageList, Container } from './styles';
 
 const Storage = () => {
+ // const params = useParams();
+
+  const history = useHistory();
   const [title, setTitle] = useState("");
   const [storages, setStorages] = useState([]);
 
@@ -21,12 +25,20 @@ const Storage = () => {
     }
   },[title]);
 
+  const handleParams = (data) => {
+    history.push({
+      pathname: '/createproduct',
+      state: {  data  },
+    })
+
+    console.log(data);
+  }
+
   useEffect(() => {
     api.get('categories').then(response => {
       setStorages(response.data);
     });
   },[storages]);
-
 
   return (
       <Container>
@@ -41,11 +53,11 @@ const Storage = () => {
         </form>
 
         <StorageList>
-          {storages.map(storage => (
-            <li key={storage.id}>
-              <strong>{storage.id}</strong>
-              <span>{storage.title}</span>
-              <Link to="/createproduct">Crie seus Produtos</Link>
+          {storages.map(data => (
+            <li key={data.id}>
+              <strong>{data.id}</strong>
+              <span>{data.title}</span>
+              <button  onClick={() => handleParams(data.id)}>Crie seus Produtos</button>
             </li>
           ))}
         </StorageList>
