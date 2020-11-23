@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Container, Content, Profile, SignOut } from './styles';
 import { signOut } from '../../store/modules/auth/actions';
 
-export default function Header() {
+export default function Header({ title }) {
   const dispatch = useDispatch();
 
   const profile = useSelector(state => state.user.profile);
@@ -14,7 +14,7 @@ export default function Header() {
     <Container>
       <Content>
         <nav>
-          <span className="logo">LOGO</span>
+          <span className="logo">{title}</span>
           <Link to="/dashboard">Dashboard</Link>
         </nav>
 

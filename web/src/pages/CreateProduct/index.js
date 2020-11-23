@@ -11,14 +11,12 @@ const CreateProduct = () => {
   const history = useHistory();
   const location = useLocation();
 
-  const categoryId = location.state.data;
-
-  console.log(categoryId);
-
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState();
   const [stock, setStock] = useState();
+
+  const categoryIdParams = location.state.data;
 
   const handleSubmit = useCallback(async (event) => {
     event.preventDefault();
@@ -27,7 +25,7 @@ const CreateProduct = () => {
       title,
       description,
       price: parseFloat(price),
-      categoryId: parseInt(categoryId),
+      categoryId: parseInt(categoryIdParams),
       stock: parseInt(stock),
     });
 
@@ -35,7 +33,7 @@ const CreateProduct = () => {
       console.log(response.data);
       history.push("/dashboard");
     }
-  }, [title, description, price, categoryId, stock, history]);
+  }, [title, description, price, categoryIdParams, stock, history]);
 
   return (
       <Container>

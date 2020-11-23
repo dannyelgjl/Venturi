@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
+
 import { Link } from 'react-router-dom';
+
 import Button from '../../components/Button';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
@@ -14,12 +16,12 @@ const schema = Yup.object().shape({
   password: Yup.string().required('A senha é obrigatória'),
 });
 
-export default function SingIn() {
+const SingIn = () => {
   const dispatch = useDispatch();
 
-  function handleSubmit({ email, password }) {
+  const handleSubmit = useCallback(({ email, password }) => {
     dispatch(signInRequest(email, password));
-  }
+  }, []);
 
   return (
     <>
@@ -35,3 +37,5 @@ export default function SingIn() {
     </>
   );
 }
+
+export default SingIn;

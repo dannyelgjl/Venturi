@@ -1,15 +1,13 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
 import api from '../../services/api';
-import { useParams } from 'react-router-dom';
 
 import Button from '../../components/Button';
 
 import { StorageList, Container } from './styles';
 
 const Storage = () => {
- // const params = useParams();
-
   const history = useHistory();
   const [title, setTitle] = useState("");
   const [storages, setStorages] = useState([]);
@@ -25,14 +23,15 @@ const Storage = () => {
     }
   },[title]);
 
-  const handleParams = (data) => {
+
+  // Passa dados do armazém por parâmetro
+  const handleParams = useCallback((data) => {
     history.push({
       pathname: '/createproduct',
       state: {  data  },
     })
-
     console.log(data);
-  }
+  }, [])
 
   useEffect(() => {
     api.get('categories').then(response => {
