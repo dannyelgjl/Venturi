@@ -1,21 +1,24 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import history from './services/history';
+import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
-
-import store from './store';
-
-import GlobalStyles from './styles/global';
+import { Router } from 'react-router-dom';
 
 import Routes from './routes';
+import history from './services/history';
 
-const App = () => {
+import { store, persistor } from './store';
+
+import GlobalStyle from './styles/global';
+
+function App() {
   return (
     <Provider store={store}>
-      <Router history={history}>
-        <Routes />
-        <GlobalStyles />
-      </Router>
+      <PersistGate persistor={persistor}>
+        <Router history={history}>
+          <Routes />
+          <GlobalStyle />
+        </Router>
+      </PersistGate>
     </Provider>
   );
 }

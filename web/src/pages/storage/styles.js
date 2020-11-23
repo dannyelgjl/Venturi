@@ -34,6 +34,6 @@ export const StorageList = styled.ul`
     padding: 20px;
   }
 
-  
-  
+
+
 `

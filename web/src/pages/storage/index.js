@@ -9,7 +9,7 @@ import { StorageList, Container } from './styles';
 const Storage = () => {
   const [title, setTitle] = useState("");
   const [storages, setStorages] = useState([]);
-  
+
   const handleSubmit = useCallback(async (event) => {
     event.preventDefault();
     const response = await api.post('categories', {
@@ -19,7 +19,7 @@ const Storage = () => {
       console.log(response.data);
       setTitle("");
     }
-  },[title]); 
+  },[title]);
 
   useEffect(() => {
     api.get('categories').then(response => {
@@ -29,27 +29,27 @@ const Storage = () => {
 
 
   return (
-    <Container>      
-      <form onSubmit={handleSubmit}>
-        <input 
-          placeholder="Digite o nome do seu Armazém..."
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-          type="text"
-        />
-        <Button type="submit">Criar</Button>
-      </form>
+      <Container>
+        <form onSubmit={handleSubmit}>
+          <input
+            placeholder="Digite o nome do seu Armazém..."
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            type="text"
+          />
+          <Button type="submit">Criar</Button>
+        </form>
 
-      <StorageList>
-        {storages.map(storage => (
-          <li key={storage.id}>
-            <strong>{storage.id}</strong>
-            <span>{storage.title}</span>
-            <Link to="/createproduct">Crie seus Produtos</Link>
-          </li>
-        ))}
-      </StorageList>
-    </Container>
+        <StorageList>
+          {storages.map(storage => (
+            <li key={storage.id}>
+              <strong>{storage.id}</strong>
+              <span>{storage.title}</span>
+              <Link to="/createproduct">Crie seus Produtos</Link>
+            </li>
+          ))}
+        </StorageList>
+      </Container>
   );
 }
 
