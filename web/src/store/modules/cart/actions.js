@@ -5,10 +5,10 @@ export function addToCartRequest(id) {
   };
 }
 
-export function addToCartSuccess(title) {
+export function addToCartSuccess(product) {
   return {
     type: "@cart/ADD_SUCCESS",
-    title,
+    product,
   };
 }
 
@@ -19,18 +19,18 @@ export function removeFromCart(id) {
   };
 }
 
-export function updateAmountRequest(id, stock) {
+export function updateAmountRequest(id, amount) {
   return {
     type: "@cart/UPDATE_AMOUNT_REQUEST",
     id,
-    stock,
+    amount,
   };
 }
 
-export function updateAmountSuccess(id, stock) {
+export function updateAmountSuccess(id, amount) {
   return {
     type: "@cart/UPDATE_AMOUNT_SUCCESS",
     id,
-    stock,
+    amount,
   };
 }

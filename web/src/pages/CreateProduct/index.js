@@ -12,6 +12,7 @@ const CreateProduct = () => {
   const location = useLocation();
 
   const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState();
   const [stock, setStock] = useState();
@@ -24,25 +25,31 @@ const CreateProduct = () => {
     const response = await api.post('products', {
       title,
       description,
+      image,
       price: parseFloat(price),
       categoryId: parseInt(categoryIdParams),
       stock: parseInt(stock),
     });
 
     if (response.data) {
-      console.log(response.data);
-      history.push("/dashboard");
+      history.push('/dashboard');
     }
-  }, [title, description, price, categoryIdParams, stock, history]);
+  }, [title, description, price, categoryIdParams, stock, history, image]);
 
   return (
       <Container>
         <form onSubmit={handleSubmit}>
           <input
-            placeholder="Produto"
+            placeholder="Nome do Produto..."
             type="text"
             value={title}
             onChange={e => setTitle(e.target.value)}
+            />
+          <input
+            placeholder="Coloque a URL da imagem do seu Produto..."
+            type="text"
+            value={image}
+            onChange={e => setImage(e.target.value)}
             />
           <input
             placeholder="Preço"

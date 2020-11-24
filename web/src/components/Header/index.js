@@ -9,6 +9,7 @@ import { signOut } from '../../store/modules/auth/actions';
 export default function Header({ title }) {
   const dispatch = useDispatch();
 
+  const cartSize = useSelector(state => state.cart.length);
   const profile = useSelector(state => state.user.profile);
 
   return (
@@ -25,7 +26,7 @@ export default function Header({ title }) {
           <Cart to="/cart">
             <div>
               <strong>Meu carrinho</strong>
-              <span>5 itens</span>
+              <span>{cartSize} itens</span>
             </div>
             <MdShoppingBasket size={36} color="#FFF" />
           </Cart>

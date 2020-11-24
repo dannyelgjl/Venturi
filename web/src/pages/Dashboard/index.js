@@ -1,17 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import api from '../../services/api';
+import * as CartAction from "../../store/modules/cart/actions";
 
 import { formatPrice } from '../../util/format';
 
-import { MdAddShoppingCart } from 'react-icons/md';
+import { MdAddShoppingCart, MdDelete } from 'react-icons/md';
 
 import { ProductList, StyledLink } from './styles';
 
 const Product = () => {
+  const dispatch = useDispatch();
+ // const notify = () => toast("Wow so easy !");
+
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
+  const amount = useSelector(state =>
+    state.cart.reduce((sumAmount, product) => {
+      sumAmount[product.id] = product.amount;
+
+    return sumAmount;
+  }, {}));
+
+   useEffect(() => {
     async function loadProducts() {
       const response = await api.get('products');
 
@@ -24,28 +37,44 @@ const Product = () => {
     loadProducts();
   }, []);
 
+  const deleteProduct = useCallback(async (id) => {
+    const response = await api.delete(`products/${id}`);
+
+     //const product = products.filter(product => product.id === id)
+
+    setProducts(products.filter(product => product.id !== id));
+    toast(response.data);
+  }, [products]);
+
+  function handleAddProduct(id) {
+    dispatch(CartAction.addToCartRequest(id));
+  };
 
   return (
   <>
+
     <StyledLink to="/storage">Criar Armazém</StyledLink>
     <ProductList>
       {products.map(product => (
          <li key={product.id}>
          <img
-           src="https://media.gazetadopovo.com.br/2019/05/07153445/bmw-x5-suv-premium-brasil-1-660x372.jpg"
-           alt="Carro"
+           src={product.image}
+           alt={product.title}
            />
            <span>Armazém: {product.category.title}</span>
            <strong>Carro: {product.title}</strong>
            <span>{product.priceFormatted}</span>
 
            <span>Descrição: {product.description}</span>
-
-           <button type="button">
+           <button onClick={() => deleteProduct(product.id)}>
+           <MdDelete size={30} style={{ position: 'relative' }} />
+           </button>
+           <button type="button" onClick={() => handleAddProduct(product.id)}>
              <div>
                <MdAddShoppingCart  size={16} color="#FFF" />
-               3
+               {amount[product.id] || 0}
              </div>
+
              <span>ADICIONAR AO CARRINHO</span>
            </button>
        </li>
