@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 
 import api from '../../services/api';
 
+import { formatPrice } from '../../util/format';
+
 import { MdAddShoppingCart } from 'react-icons/md';
 
 import { ProductList, StyledLink } from './styles';
@@ -10,11 +12,18 @@ const Product = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    api.get('products').then(response => {
-      setProducts(response.data);
-    });
+    async function loadProducts() {
+      const response = await api.get('products');
 
-  }, [products]);
+      const data = response.data.map((product) => ({
+        ...product,
+        priceFormatted: formatPrice(product.price),
+      }));
+      setProducts(data);
+    }
+    loadProducts();
+  }, []);
+
 
   return (
   <>
@@ -28,7 +37,7 @@ const Product = () => {
            />
            <span>Armazém: {product.category.title}</span>
            <strong>Carro: {product.title}</strong>
-           <span>R$ {product.price}</span>
+           <span>{product.priceFormatted}</span>
 
            <span>Descrição: {product.description}</span>
 
