@@ -12,7 +12,7 @@ namespace api.Controllers
   [Route("v1/categories")]
   public class CategoryController : ControllerBase
   {
-    [Authorize]
+
     [HttpGet]
     [Route("")]
     public async Task<ActionResult<List<Category>>> Get([FromServices] DataContext context)
@@ -21,7 +21,7 @@ namespace api.Controllers
       return categories;
     }
 
-    [Authorize]
+
     [HttpPost]
     [Route("")]
     public async Task<ActionResult<Category>> Post(

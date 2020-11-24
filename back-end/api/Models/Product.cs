@@ -18,6 +18,11 @@ namespace api.Models
 
     public string Description { get; set; }
 
+    [MaxLength(999999999, ErrorMessage = "Este campo deve conter no máximo 999999999 caracteres")]
+
+    public string Image { get; set; }
+
+
     [Required(ErrorMessage = "Este campo é obrigatório")]
 
     public decimal Price { get; set; }
