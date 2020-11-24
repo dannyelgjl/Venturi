@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
+import { Link } from "react-router-dom";
 
 export const Container = styled.header`
   background: transparent;
@@ -42,6 +43,33 @@ export const Content = styled.div`
     align-items: center;
   }
 `;
+
+export const Cart = styled(Link)`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.2;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  div {
+    text-align: right;
+    margin-right: 10px;
+
+    strong {
+      display: block;
+      color: #fff;
+    }
+
+    span {
+      font-size: 12px;
+      color: #999;
+    }
+  }
+`;
+
 
 export const Profile = styled.div`
   display: flex;

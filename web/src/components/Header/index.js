@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { MdShoppingBasket } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
-import { Container, Content, Profile, SignOut } from './styles';
+import { Container, Content, Profile, SignOut, Cart } from './styles';
 import { signOut } from '../../store/modules/auth/actions';
 
 export default function Header({ title }) {
@@ -18,7 +19,17 @@ export default function Header({ title }) {
           <Link to="/dashboard">Dashboard</Link>
         </nav>
 
+
+
         <aside>
+          <Cart to="/cart">
+            <div>
+              <strong>Meu carrinho</strong>
+              <span>5 itens</span>
+            </div>
+            <MdShoppingBasket size={36} color="#FFF" />
+          </Cart>
+
           <Profile>
             <div>
               <strong>{profile.name}</strong>
