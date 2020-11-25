@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { toast } from 'react-toastify';
+
 import api from '../../services/api';
 
 import Button from '../../components/Button';
@@ -10,19 +12,22 @@ import { StorageList, Container } from './styles';
 const Storage = () => {
   const history = useHistory();
   const [title, setTitle] = useState("");
+
   const [storages, setStorages] = useState([]);
 
   const handleSubmit = useCallback(async (event) => {
     event.preventDefault();
+
     const response = await api.post('categories', {
       title
     });
+
     if (response.data) {
-      console.log(response.data);
+      toast.success(<span>Armazém <strong>{response.data.title}</strong> criado com Sucesso!</span>);
       setTitle("");
     }
-  },[title]);
 
+  },[title]);
 
   // Passa dados do armazém por parâmetro
   const handleParams = useCallback((data) => {
@@ -30,6 +35,7 @@ const Storage = () => {
       pathname: '/createproduct',
       state: {  data  },
     })
+
     console.log(data);
   }, [])
 
@@ -45,7 +51,7 @@ const Storage = () => {
           <input
             placeholder="Digite o nome do seu Armazém..."
             value={title}
-            onChange={e => setTitle(e.target.value)}
+            onChange={event => setTitle(event.target.value)}
             type="text"
           />
           <Button type="submit">Criar</Button>

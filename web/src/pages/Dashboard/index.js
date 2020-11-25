@@ -1,21 +1,25 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-
+import Modal from '../../components/Modal';
+import FormUpdate from '../../components/FormUpdate';
 import api from '../../services/api';
 import * as CartAction from "../../store/modules/cart/actions";
 
+import { useLocation, useHistory } from 'react-router-dom';
+
 import { formatPrice } from '../../util/format';
 
-import { MdAddShoppingCart, MdDelete } from 'react-icons/md';
+import { MdAddShoppingCart, MdDelete, MdUpdate } from 'react-icons/md';
 
-import { ProductList, StyledLink } from './styles';
+import { ProductList, StyledLink, Form } from './styles';
 
 const Product = () => {
   const dispatch = useDispatch();
- // const notify = () => toast("Wow so easy !");
+  const history = useHistory();
 
   const [products, setProducts] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const amount = useSelector(state =>
     state.cart.reduce((sumAmount, product) => {
@@ -23,6 +27,7 @@ const Product = () => {
 
     return sumAmount;
   }, {}));
+
 
    useEffect(() => {
     async function loadProducts() {
@@ -40,21 +45,35 @@ const Product = () => {
   const deleteProduct = useCallback(async (id) => {
     const response = await api.delete(`products/${id}`);
 
-     //const product = products.filter(product => product.id === id)
+    //const product = products.filter(product => product.id === id)
 
     setProducts(products.filter(product => product.id !== id));
-    toast(response.data);
+    toast(`${response.data} 😥`);
   }, [products]);
 
   function handleAddProduct(id) {
     dispatch(CartAction.addToCartRequest(id));
   };
 
+ const updateProduct = useCallback((data, product) => {
+  history.push({
+    pathname: '/dashboard',
+    state: {  data, product  },
+  })
+  console.log(data);
+
+   setIsModalVisible(true);
+  }, []);
+
   return (
   <>
-
     <StyledLink to="/storage">Criar Armazém</StyledLink>
-    <ProductList>
+    {isModalVisible ?
+    <Modal onClose={() => setIsModalVisible(false)} >
+      <FormUpdate />
+    </Modal>
+      :
+      <ProductList>
       {products.map(product => (
          <li key={product.id}>
          <img
@@ -66,8 +85,13 @@ const Product = () => {
            <span>{product.priceFormatted}</span>
 
            <span>Descrição: {product.description}</span>
-           <button onClick={() => deleteProduct(product.id)}>
-           <MdDelete size={30} style={{ position: 'relative' }} />
+
+           <button  style={{ width:'30px', marginBottom: '5px' }} onClick={() => updateProduct(product)}>
+            <MdUpdate size={30} style={{ position: 'relative',  }} />
+           </button>
+
+           <button  style={{ width:'30px', marginBottom: '5px' }} onClick={() => deleteProduct(product.id)}>
+            <MdDelete size={30} style={{ position: 'relative',  }} />
            </button>
            <button type="button" onClick={() => handleAddProduct(product.id)}>
              <div>
@@ -80,6 +104,8 @@ const Product = () => {
        </li>
       ))}
     </ProductList>
+    }
+
   </>
   )
 }

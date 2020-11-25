@@ -99,13 +99,21 @@ export const SignOut = styled.div`
   button {
     border: 0;
     border-radius: 4px;
-    background: #1472b6;
+    background: transparent;
     color: #fff;
     padding: 15px;
     transition: background 0.2s;
+    width: 80px;
+
+    > svg {
+      margin-left: 30px
+    }
+    p {
+      position: absolute;
+    }
 
     &:hover {
-      background: ${darken(0.03, '#1472b6')};
+      background: ${darken(0.03, '#333')};
     }
   }
 `;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { MdShoppingBasket } from 'react-icons/md';
+import { FiLogOut } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import { Container, Content, Profile, SignOut, Cart } from './styles';
@@ -40,7 +41,10 @@ export default function Header({ title }) {
 
           <SignOut>
             <button type="button" onClick={() => dispatch(signOut())}>
-              Sair
+            <p>
+             Sair
+            </p>
+            <FiLogOut size={16}/>
             </button>
           </SignOut>
         </aside>

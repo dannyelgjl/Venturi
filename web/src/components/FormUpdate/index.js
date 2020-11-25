@@ -1,46 +1,47 @@
 import React, { useState, useCallback } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import { toast } from 'react-toastify';
-
 import api from '../../services/api';
+import Button from '../Button';
 
-import Button from '../../components/Button';
+import { useHistory, useLocation } from 'react-router-dom';
 
-import { Container } from './styles';
+import { Form } from './styles'
 
-const CreateProduct = () => {
-  const history = useHistory();
+const FormUpdate = () => {
   const location = useLocation();
+  const history = useHistory();
+  const productDataParams = location.state.data;
 
-  const [title, setTitle] = useState("");
-  const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState();
-  const [stock, setStock] = useState();
 
-  const categoryIdParams = location.state.data;
+  const [title, setTitle] = useState(productDataParams.title);
+  const [image, setImage] = useState(productDataParams.image);
+  const [description, setDescription] = useState(productDataParams.description);
+  const [price, setPrice] = useState(productDataParams.price);
+  const [stock, setStock] = useState(productDataParams.stock);
+  const [categoryId, setCategoryId] = useState(productDataParams.categoryId);
 
-  const handleSubmit = useCallback(async (event) => {
-    event.preventDefault();
-
-    const response = await api.post('products', {
+  const handleSubmitUpdate = useCallback(async (id) => {
+    const response = await api.put(`products/${id}`, {
       title,
       description,
       image,
       price: parseFloat(price),
-      categoryId: parseInt(categoryIdParams),
+      categoryId: parseInt(categoryId),
       stock: parseInt(stock),
     });
 
+
+    console.log(id);
+
     if (response.data) {
-      toast(<span>🚀 Produto <strong>{response.data.title}</strong> criado com Sucesso!!🚀</span>)
+      console.log(response.data);
+
       history.push('/dashboard');
     }
-  }, [title, description, price, categoryIdParams, stock, history, image]);
+  }, [title, description, price, productDataParams, stock, history, image, categoryId]);
+
 
   return (
-      <Container>
-        <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmitUpdate}>
           <input
             placeholder="Nome do Produto..."
             type="text"
@@ -71,11 +72,9 @@ const CreateProduct = () => {
             value={stock}
             onChange={e => setStock(e.target.value)}
           />
-
-          <Button type="submit">Criar</Button>
-        </form>
-      </Container>
+          <Button type="submit">Alterar dados</Button>
+        </Form>
   );
 }
 
-export default CreateProduct;
+export default FormUpdate;

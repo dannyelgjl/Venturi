@@ -25,7 +25,7 @@ const SingIn = () => {
 
   return (
     <>
-      <span className="logo">LOGO</span>
+      <span className="logo">VENTURI</span>
 
       <Form schema={schema} onSubmit={handleSubmit}>
         <Input name="email" type="email" placeholder="E-mail" />
