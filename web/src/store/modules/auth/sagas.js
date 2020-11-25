@@ -22,18 +22,18 @@ export function* signIn({ payload }) {
     yield put(signInSuccess(token, user));
 
     history.push('/dashboard');
+    toast.success('Seja Bem-vindo!!🤩🥰🐱‍🏍')
   } catch (error) {
-    toast.error('Authentication fails');
+    toast.error('Credenciais erradas!!🤯');
     yield put(signFailure());
   }
 }
 
 export function* signUp({ payload }) {
   try {
-    const { name, email, password } = payload;
+    const {  email, password } = payload;
 
     yield call(api.post, '/users', {
-      name,
       email,
       password,
     });
@@ -57,6 +57,7 @@ export function setToken({ payload }) {
 
 export function signOut() {
   history.push('/');
+  toast('Até a próxima 😁');
 }
 
 export default all([

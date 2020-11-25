@@ -23,7 +23,7 @@ const Storage = () => {
     });
 
     if (response.data) {
-      toast.success(<span>Armazém <strong>{response.data.title}</strong> criado com Sucesso!</span>);
+      toast.success(<span>Armazém <strong>{response.data.title}</strong> criado com Sucesso! 🤩</span>);
       setTitle("");
     }
 

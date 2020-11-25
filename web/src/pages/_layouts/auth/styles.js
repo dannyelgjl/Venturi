@@ -44,7 +44,7 @@ export const Content = styled.div`
     }
 
     span {
-      color: #ff9999;
+      color: #B60000;
       align-self: flex-start;
       margin: 2px 0 10px;
     }

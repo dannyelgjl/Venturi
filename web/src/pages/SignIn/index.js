@@ -7,6 +7,7 @@ import Button from '../../components/Button';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
+
 import { signInRequest } from '../../store/modules/auth/actions';
 
 const schema = Yup.object().shape({
@@ -16,7 +17,7 @@ const schema = Yup.object().shape({
   password: Yup.string().required('A senha é obrigatória'),
 });
 
-const SingIn = () => {
+const SingIn = ({ error }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = useCallback(({ email, password }) => {
@@ -26,14 +27,13 @@ const SingIn = () => {
   return (
     <>
       <span className="logo">VENTURI</span>
+        <Form schema={schema} onSubmit={handleSubmit}>
+          <Input name="email" type="email" placeholder="E-mail" />
+          <Input name="password" type="password" placeholder="Senha" />
 
-      <Form schema={schema} onSubmit={handleSubmit}>
-        <Input name="email" type="email" placeholder="E-mail" />
-        <Input name="password" type="password" placeholder="Senha" />
-
-        <Button type="submit">Entrar</Button>
-        <Link to="/register">Criar conta</Link>
-      </Form>
+          <Button type="submit">Entrar</Button>
+          <Link to="/register">Criar conta</Link>
+        </Form>
     </>
   );
 }

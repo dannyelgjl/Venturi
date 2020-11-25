@@ -48,7 +48,7 @@ const Product = () => {
     //const product = products.filter(product => product.id === id)
 
     setProducts(products.filter(product => product.id !== id));
-    toast(`${response.data} 😥`);
+    toast.error(`${response.data} 😥`);
   }, [products]);
 
   function handleAddProduct(id) {
