@@ -19,7 +19,7 @@ namespace api.Controllers
     public async Task<ActionResult<dynamic>> Authenticate([FromBody] User model)
     {
       // Recupera o usuário
-      var user = UserRepository.Get(model.email, model.password);
+      var user = UserRepository.Get(model.name, model.avatar, model.email, model.password);
 
       // Verifica se o usuário existe
       if (user == null)
