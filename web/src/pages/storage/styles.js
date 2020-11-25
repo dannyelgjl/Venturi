@@ -9,6 +9,12 @@ export const Container = styled.div`
       width: 100%;
       color: #f4ede8;
       margin-top: 60px;
+      transition: transform 0.5s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
 
       &::placeholder {
         color: #666360;
@@ -24,7 +30,7 @@ export const StorageList = styled.ul`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
-  margin-top: 20px;
+  margin: 20px 0 20px;
   list-style: none;
 
   li {
@@ -34,6 +40,11 @@ export const StorageList = styled.ul`
     border-radius: 4px;
     padding: 20px;
     align-items: center;
+    transition: transform 0.5s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
 
     > img {
       width: 50px;
