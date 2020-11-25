@@ -6,7 +6,7 @@ import api from '../../services/api';
 
 import Button from '../../components/Button';
 
-import { Container } from './styles';
+import { Container, Title } from './styles';
 
 const CreateProduct = () => {
   const history = useHistory();
@@ -18,7 +18,9 @@ const CreateProduct = () => {
   const [price, setPrice] = useState();
   const [stock, setStock] = useState();
 
-  const categoryIdParams = location.state.data;
+  const categoryIdParams = location.state.data.id;
+  const categoryTitleParams = location.state.data.title;
+  const categoryImageParams = location.state.data;
 
   const handleSubmit = useCallback(async (event) => {
     event.preventDefault();
@@ -40,6 +42,10 @@ const CreateProduct = () => {
 
   return (
       <Container>
+        <Title>
+          <img src={categoryImageParams.image} alt=""/>
+          <h1>ARMAZÉM: <strong>{categoryTitleParams}</strong></h1>
+        </Title>
         <form onSubmit={handleSubmit}>
           <input
             placeholder="Nome do Produto..."

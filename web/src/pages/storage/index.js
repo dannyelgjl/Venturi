@@ -79,7 +79,7 @@ const Storage = () => {
             <li key={data.id}>
               <img src={data.image} alt={data.title}/>
               <span><strong>Armazém:</strong> {data.title}</span>
-              <Button  onClick={() => handleParams(data.id)}>Crie seus Produtos</Button>
+              <Button  onClick={() => handleParams(data)}>Crie seus Produtos</Button>
             </li>
           ))}
         </StorageList>
