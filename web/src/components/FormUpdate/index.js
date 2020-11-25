@@ -5,6 +5,8 @@ import Button from '../Button';
 import { useHistory, useLocation } from 'react-router-dom';
 // API
 import api from '../../services/api';
+// Toast
+import { toast } from 'react-toastify';
 // Componentes estilizados
 import { Form } from './styles'
 
@@ -15,6 +17,7 @@ const FormUpdate = () => {
   // Pegando dados por parâmetro
   const productDataParams = location.state.data;
 
+  // State
   const [title, setTitle] = useState(productDataParams.title);
   const [image, setImage] = useState(productDataParams.image);
   const [description, setDescription] = useState(productDataParams.description);
@@ -23,28 +26,31 @@ const FormUpdate = () => {
   const [categoryId, setCategoryId] = useState(productDataParams.categoryId);
 
   // Alterando dados do Produto
-  const handleSubmitUpdate = useCallback(async (id, event) => {
-    event.preventDefault();
+  const handleSubmitUpdate = useCallback(async (event) => {
+    try {
+      event.preventDefault();
 
-    const response = await api.put(`products/${id}`, {
-      title,
-      description,
-      image,
-      price: parseFloat(price),
-      categoryId: parseInt(categoryId),
-      stock: parseInt(stock),
-    });
+      const response = await api.put(`products/${productDataParams.id}`, {
+        title,
+        description,
+        image,
+        price: parseFloat(price),
+        categoryId: parseInt(productDataParams.categoryId),
+        stock: parseInt(stock),
+      });
 
-
-    if (response.data) {
-      console.log(response.data);
-
-      history.push('/dashboard');
+      if (response.data) {
+        console.log(response.data);
+        toast.success('Dados alterados com Sucesso!!');
+        history.push('/');
+      }
+    }catch (err) {
+      console.log(err);
     }
   }, [title, description, price, productDataParams, stock, history, image, categoryId]);
 
   return (
-    <Form onSubmit={() => handleSubmitUpdate()}>
+    <Form onSubmit={handleSubmitUpdate}>
       <img src={image} alt={title}/>
         <div className="container-input-row">
           <div className="input-left">

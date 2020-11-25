@@ -69,7 +69,7 @@ const Product = () => {
  const updateProduct = useCallback((data, product) => {
   history.push({
     pathname: '/dashboard',
-    state: {  data, product  },
+    state: {  data, product   },
   })
   console.log(data);
 
@@ -106,7 +106,7 @@ const Product = () => {
           <div className="container-button-card">
             <div className="button-update-card">
               <button  style={{ width:'30px', marginBottom: '5px' }} onClick={() => updateProduct(product)}>
-                  <MdUpdate size={30} style={{ position: 'relative',  }} />
+                  <MdUpdate size={30} style={{ position: 'relative' }} />
               </button>
             </div>
 
