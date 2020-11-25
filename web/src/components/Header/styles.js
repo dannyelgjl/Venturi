@@ -127,7 +127,7 @@ export const SignOut = styled.div`
     }
 
     &:hover {
-      background: ${darken(0.03, '#333')};
+      background: ${darken(0.03, '#1472b6')};
     }
   }
 `;

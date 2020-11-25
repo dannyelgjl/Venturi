@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 
 export const Container = styled.div`
@@ -38,7 +39,12 @@ export const Button = styled.button`
   svg {
     font-size: 36px;
     position: absolute;
-    color: #fff
+    color: #fff;
+    transition: color 0.2s;
+
+    &:hover {
+      color: ${darken(0.03, '#1472b6' )}
+    }
   }
 
 `

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import api from '../../services/api';
 import Button from '../Button';
 
@@ -11,7 +11,6 @@ const FormUpdate = () => {
   const history = useHistory();
   const productDataParams = location.state.data;
 
-
   const [title, setTitle] = useState(productDataParams.title);
   const [image, setImage] = useState(productDataParams.image);
   const [description, setDescription] = useState(productDataParams.description);
@@ -19,7 +18,9 @@ const FormUpdate = () => {
   const [stock, setStock] = useState(productDataParams.stock);
   const [categoryId, setCategoryId] = useState(productDataParams.categoryId);
 
-  const handleSubmitUpdate = useCallback(async (id) => {
+  const handleSubmitUpdate = useCallback(async (id, event) => {
+    event.preventDefault();
+
     const response = await api.put(`products/${id}`, {
       title,
       description,
@@ -30,8 +31,6 @@ const FormUpdate = () => {
     });
 
 
-    console.log(id);
-
     if (response.data) {
       console.log(response.data);
 
@@ -39,39 +38,54 @@ const FormUpdate = () => {
     }
   }, [title, description, price, productDataParams, stock, history, image, categoryId]);
 
-
   return (
-    <Form onSubmit={handleSubmitUpdate}>
-          <input
-            placeholder="Nome do Produto..."
-            type="text"
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-            />
-          <input
-            placeholder="Coloque a URL da imagem do seu Produto..."
-            type="text"
-            value={image}
-            onChange={e => setImage(e.target.value)}
-            />
-          <input
-            placeholder="Preço"
-            type="text"
-            value={price}
-            onChange={e => setPrice(e.target.value)}
-            />
-          <input
-            placeholder="Descrição"
-            type="text"
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-            />
-          <input
-            placeholder="Quantidade de estoque disponível"
-            type="text"
-            value={stock}
-            onChange={e => setStock(e.target.value)}
-          />
+    <Form onSubmit={() => handleSubmitUpdate()}>
+      <img src={image} alt={title}/>
+        <div className="container-input-row">
+          <div className="input-left">
+            <label>Nome do Produto</label>
+            <input
+                placeholder="Nome do Produto..."
+                type="text"
+                value={title}
+                onChange={e => setTitle(e.target.value)}
+                />
+          </div>
+
+          <div className="input-right">
+            <label>Preço</label>
+            <input
+              placeholder="Preço"
+              type="text"
+              value={price}
+              onChange={e => setPrice(e.target.value)}
+              />
+          </div>
+        </div>
+
+        <div className="container-input-column">
+          <div className="input-up">
+            <label>Descrição</label>
+              <input
+                placeholder="Descrição"
+                type="text"
+                value={description}
+                onChange={e => setDescription(e.target.value)}
+                />
+          </div>
+
+          <div className="input-down">
+            <label>Estoque</label>
+              <input
+                placeholder="Quantidade de estoque disponível"
+                type="text"
+                value={stock}
+                onChange={e => setStock(e.target.value)}
+              />
+          </div>
+
+        </div>
+
           <Button type="submit">Alterar dados</Button>
         </Form>
   );
