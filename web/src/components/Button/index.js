@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Componente estilizado
 import { Container } from './styles';
 
 const Button = ({ children, ...rest }) => {

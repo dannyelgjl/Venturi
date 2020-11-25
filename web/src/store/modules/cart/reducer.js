@@ -1,4 +1,5 @@
 import produce from "immer";
+import {toast} from 'react-toastify'
 
 export default function cart(state = [], action) {
   switch (action.type) {
@@ -15,6 +16,7 @@ export default function cart(state = [], action) {
 
         if (productIndex >= 0) {
           draft.splice(productIndex, 1);
+          toast('Você removeu um produto do seu carrinho!!😲');
         }
       });
 

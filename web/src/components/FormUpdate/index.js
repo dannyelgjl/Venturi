@@ -1,14 +1,18 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import api from '../../services/api';
+import React, { useState, useCallback } from 'react';
+// Component
 import Button from '../Button';
-
+// react-router-dom
 import { useHistory, useLocation } from 'react-router-dom';
-
+// API
+import api from '../../services/api';
+// Componentes estilizados
 import { Form } from './styles'
 
 const FormUpdate = () => {
   const location = useLocation();
   const history = useHistory();
+
+  // Pegando dados por parâmetro
   const productDataParams = location.state.data;
 
   const [title, setTitle] = useState(productDataParams.title);
@@ -18,6 +22,7 @@ const FormUpdate = () => {
   const [stock, setStock] = useState(productDataParams.stock);
   const [categoryId, setCategoryId] = useState(productDataParams.categoryId);
 
+  // Alterando dados do Produto
   const handleSubmitUpdate = useCallback(async (id, event) => {
     event.preventDefault();
 
@@ -83,9 +88,7 @@ const FormUpdate = () => {
                 onChange={e => setStock(e.target.value)}
               />
           </div>
-
         </div>
-
           <Button type="submit">Alterar dados</Button>
         </Form>
   );

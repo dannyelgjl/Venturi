@@ -5,7 +5,6 @@ export const Container = styled.div`
   /* padding: 30px;
   background: "#fff";
   border-radius: 4px; */
-
   margin-top: 50px;
 
   footer {
@@ -15,7 +14,7 @@ export const Container = styled.div`
     align-items: center;
 
     button {
-      background: #232129;
+      background: #1472b6;
       color: #fff;
       border: 0;
       border-radius: 4px;
@@ -25,7 +24,7 @@ export const Container = styled.div`
       transition: background 0.2;
 
       &:hover {
-        background: ${darken(0.3, "#232129")};
+        background: ${darken(0.3, "#1472b6")};
       }
     }
   }
@@ -43,6 +42,10 @@ export const ProductTable = styled.table`
   tbody td {
     padding: 12px;
     border-bottom: 1px solid #eee;
+  }
+
+  .subtotal {
+    color: green
   }
 
   img {

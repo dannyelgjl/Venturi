@@ -16,7 +16,7 @@ import { formatPrice } from '../../util/format';
 import { toast } from 'react-toastify';
 // Icons
 import { MdAddShoppingCart, MdDelete, MdUpdate } from 'react-icons/md';
-//Componentes estilizados
+// Componentes estilizados
 import { ProductList, StyledLink } from './styles';
 
 
@@ -117,9 +117,6 @@ const Product = () => {
             </div>
           </div>
 
-
-
-
            <button type="button" onClick={() => handleAddProduct(product.id)}>
              <div>
                <MdAddShoppingCart  size={16} color="#FFF" />
@@ -132,7 +129,6 @@ const Product = () => {
       ))}
     </ProductList>
     }
-
   </>
   )
 }

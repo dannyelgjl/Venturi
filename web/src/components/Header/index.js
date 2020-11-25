@@ -12,6 +12,7 @@ import { signOut } from '../../store/modules/auth/actions';
 export default function Header({ title }) {
   const dispatch = useDispatch();
 
+
   const cartSize = useSelector(state => state.cart.length);
   const profile = useSelector(state => state.user.profile);
 
@@ -22,8 +23,6 @@ export default function Header({ title }) {
           <a href="https://vntrx.com/" target="_blank"> <span className="logo"><img src={venturiV} alt="Venturi V"/></span></a>
           <Link to="/dashboard">Dashboard</Link>
         </nav>
-
-
 
         <aside>
           <Cart to="/cart">
