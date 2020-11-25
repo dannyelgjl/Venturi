@@ -24,7 +24,7 @@ export const Content = styled.div`
 
     span.logo {
       display: block;
-      color: #1472b6;
+      color: #fff;
       font-weight: bold;
       font-size: 20px;
       margin-right: 20px;
@@ -32,9 +32,16 @@ export const Content = styled.div`
       border-right: 1px solid #eee;
     }
 
+    span {
+      > img {
+        width: 35px;
+        height: 35px;
+      }
+    }
+
     a {
       font-weight: bold;
-      color: #1472b6;
+      color: #fff;
     }
   }
 

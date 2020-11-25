@@ -4,6 +4,8 @@ import { MdShoppingBasket } from 'react-icons/md';
 import { FiLogOut } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
+import venturiV from '../../assets/images/venturiV.png';
+
 import { Container, Content, Profile, SignOut, Cart } from './styles';
 import { signOut } from '../../store/modules/auth/actions';
 
@@ -17,7 +19,7 @@ export default function Header({ title }) {
     <Container>
       <Content>
         <nav>
-          <a href="https://vntrx.com/" target="_blank"> <span className="logo">{title}</span></a>
+          <a href="https://vntrx.com/" target="_blank"> <span className="logo"><img src={venturiV} alt="Venturi V"/></span></a>
           <Link to="/dashboard">Dashboard</Link>
         </nav>
 
