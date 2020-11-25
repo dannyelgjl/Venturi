@@ -12,6 +12,11 @@ export const Form = styled.form`
     border-radius: 50%;
     border: 2px solid #1472b6;
     margin-bottom: 16px;
+    transition: transform 0.5s;
+
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 
   .container-input-row {
@@ -20,7 +25,12 @@ export const Form = styled.form`
 
      input {
       width: 290px;
-      margin-bottom: 8px
+      margin-bottom: 8px;
+      transition: transform 0.5s;
+
+      &:hover {
+        transform: scale(0.9);
+      }
     }
 
     label {
@@ -50,6 +60,11 @@ export const Form = styled.form`
 
      input {
       width: 584px;
+      transition: transform 0.5s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
 
     .input-up {

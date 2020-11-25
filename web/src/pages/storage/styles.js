@@ -50,7 +50,9 @@ export const StorageList = styled.ul`
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      border: 3px solid #ccc;
+
+      object-fit: cover;
+      border: 2px solid #1472b6;
       margin-bottom: 10px
     }
 

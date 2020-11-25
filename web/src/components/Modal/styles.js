@@ -40,6 +40,11 @@ export const Button = styled.button`
     position: absolute;
     color: #fff;
     transition: color 0.2s;
+    transition: transform 0.5s;
+
+    &:hover {
+      transform: scale(1.3);
+    }
 
     &:hover {
       color: ${darken(0.03, '#1472b6' )}

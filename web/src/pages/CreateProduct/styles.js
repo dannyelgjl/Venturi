@@ -38,7 +38,9 @@ export const Title = styled.div`
     width: 150px;
     height: 150px;
     margin-bottom: 10px;
-    border: 2px solid #eee;
+
+    object-fit: cover;
+    border: 2px solid #1472b6;
     transition: transform 0.5s;
 
     &:hover {

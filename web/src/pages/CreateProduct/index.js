@@ -1,26 +1,28 @@
 import React, { useState, useCallback } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import { toast } from 'react-toastify';
-
-import api from '../../services/api';
-
+// Component
 import Button from '../../components/Button';
-
+// react-router-dom
+import { useHistory, useLocation } from 'react-router-dom';
+// API
+import api from '../../services/api';
+// Toast
+import { toast } from 'react-toastify';
+// Estilização de componentes
 import { Container, Title } from './styles';
 
 const CreateProduct = () => {
   const history = useHistory();
   const location = useLocation();
 
+  // Estados
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState();
   const [stock, setStock] = useState();
 
-  const categoryIdParams = location.state.data.id;
-  const categoryTitleParams = location.state.data.title;
-  const categoryImageParams = location.state.data;
+  // Dados que estão vindo por parâmetro
+  const categoryDataParams = location.state.data;
 
   const handleSubmit = useCallback(async (event) => {
     event.preventDefault();
@@ -30,7 +32,7 @@ const CreateProduct = () => {
       description,
       image,
       price: parseFloat(price),
-      categoryId: parseInt(categoryIdParams),
+      categoryId: parseInt(categoryDataParams.id),
       stock: parseInt(stock),
     });
 
@@ -38,13 +40,13 @@ const CreateProduct = () => {
       toast(<span>🚀 Produto <strong>{response.data.title}</strong> criado com Sucesso!!🚀</span>)
       history.push('/dashboard');
     }
-  }, [title, description, price, categoryIdParams, stock, history, image]);
+  }, [title, description, price, categoryDataParams, stock, history, image]);
 
   return (
       <Container>
         <Title>
-          <img src={categoryImageParams.image} alt=""/>
-          <h1>ARMAZÉM: <strong>{categoryTitleParams}</strong></h1>
+          <img src={categoryDataParams.image} alt=""/>
+          <h1>ARMAZÉM: <strong>{categoryDataParams.title}</strong></h1>
         </Title>
         <form onSubmit={handleSubmit}>
           <input

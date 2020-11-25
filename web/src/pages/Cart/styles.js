@@ -49,7 +49,11 @@ export const ProductTable = styled.table`
   }
 
   img {
-    height: 100px;
+    height: 150px;
+    width: 150px;
+    border-radius: 4px;
+    object-fit: cover;
+    border: 2px solid #1472b6;
   }
 
   strong {
@@ -81,6 +85,14 @@ export const ProductTable = styled.table`
     background: none;
     border: 0;
     padding: 6px;
+
+    > svg {
+      transition: transform 0.5s;
+
+    &:hover {
+      transform: scale(1.3);
+    }
+    }
   }
 `;
 

@@ -25,7 +25,6 @@ export const StyledLink = styled(Link)`
       }
 `;
 
-
 export const ProductList = styled.ul`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -54,6 +53,7 @@ export const ProductList = styled.ul`
         border-radius: 50%;
         border: 1px solid #1472b6;
         margin: 30px 10px 10px;
+        object-fit: cover;
       }
     }
 
@@ -91,7 +91,8 @@ export const ProductList = styled.ul`
       max-width: 250px;
       height: 150px;
       border-radius: 4px;
-      border: 1px solid #1472b6;
+      border: 2px solid #1472b6;
+      object-fit: cover;
     }
 
     > strong {
@@ -113,9 +114,25 @@ export const ProductList = styled.ul`
       justify-content: space-between;
       margin-top: 18px;
 
+      .button-update-card {
+        > button {
+          background: #1472b6;
+          transition: transform 0.5s;
+
+          &:hover {
+            transform: scale(1.3);
+          }
+        }
+      }
+
       .button-delete-card {
-        >button {
-          background: #B60000
+        > button {
+          background: #B60000;
+          transition: transform 0.5s;
+
+          &:hover {
+            transform: scale(1.2);
+          }
         }
       }
     }
@@ -132,6 +149,7 @@ export const ProductList = styled.ul`
       align-items: center;
       transition: background 0.2s;
 
+
       &:hover {
         background: ${darken(0.03, '#1472b6' )}
       }
@@ -143,7 +161,8 @@ export const ProductList = styled.ul`
         background: rgba(0, 0, 0, 0.1);
 
         svg {
-          margin-right: 5px
+          margin-right: 5px;
+
         }
       }
 
