@@ -15,11 +15,8 @@ export const Content = styled.div`
   max-width: 315px;
   text-align: center;
 
-  span.logo {
-    display: block;
-    color: #fff;
-    font-weight: bold;
-    font-size: 80px;
+  img {
+    border-radius: 50%;
     margin-bottom: 20px;
   }
 

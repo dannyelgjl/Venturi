@@ -78,12 +78,19 @@ export const Profile = styled.div`
   border-left: 1px solid #eee;
 
   div {
-    text-align: right;
+    text-align: left;
     margin-right: 10px;
 
     strong {
       display: block;
-      color: #333;
+      color: #fff;
+
+      img {
+        margin-left: 5px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+      }
     }
 
     a {

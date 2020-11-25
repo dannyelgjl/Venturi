@@ -17,7 +17,7 @@ export default function Header({ title }) {
     <Container>
       <Content>
         <nav>
-          <span className="logo">{title}</span>
+          <a href="https://vntrx.com/" target="_blank"> <span className="logo">{title}</span></a>
           <Link to="/dashboard">Dashboard</Link>
         </nav>
 
@@ -34,7 +34,7 @@ export default function Header({ title }) {
 
           <Profile>
             <div>
-              <strong>{profile.name}</strong>
+              <strong>{profile.name}<img src={profile.avatar}/></strong>
               <Link to="/profile">Meu perfil</Link>
             </div>
           </Profile>

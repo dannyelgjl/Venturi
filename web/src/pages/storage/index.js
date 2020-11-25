@@ -1,20 +1,26 @@
 import React, { useState, useCallback, useEffect } from 'react';
+
+// Component
+import Button from '../../components/Button';
+
 import { useHistory } from 'react-router-dom';
+
+// Api
+import api from '../../services/api';
 
 import { toast } from 'react-toastify';
 
-import api from '../../services/api';
-
-import Button from '../../components/Button';
-
+// Stylizations
 import { StorageList, Container } from './styles';
 
 const Storage = () => {
   const history = useHistory();
-  const [title, setTitle] = useState("");
 
+  const [title, setTitle] = useState("");
   const [storages, setStorages] = useState([]);
 
+
+  // Criando armazém
   const handleSubmit = useCallback(async (event) => {
     event.preventDefault();
 
@@ -26,10 +32,9 @@ const Storage = () => {
       toast.success(<span>Armazém <strong>{response.data.title}</strong> criado com Sucesso! 🤩</span>);
       setTitle("");
     }
-
   },[title]);
 
-  // Passa dados do armazém por parâmetro
+  // Passando dados do armazém por parâmetro
   const handleParams = useCallback((data) => {
     history.push({
       pathname: '/createproduct',
@@ -39,6 +44,7 @@ const Storage = () => {
     console.log(data);
   }, [])
 
+  // Listando Armazéns
   useEffect(() => {
     api.get('categories').then(response => {
       setStorages(response.data);
@@ -49,7 +55,7 @@ const Storage = () => {
       <Container>
         <form onSubmit={handleSubmit}>
           <input
-            placeholder="Digite o nome do seu Armazém..."
+            placeholder="Digite um nome para criar seu Armazém..."
             value={title}
             onChange={event => setTitle(event.target.value)}
             type="text"
@@ -60,9 +66,9 @@ const Storage = () => {
         <StorageList>
           {storages.map(data => (
             <li key={data.id}>
-              <strong>{data.id}</strong>
-              <span>{data.title}</span>
-              <button  onClick={() => handleParams(data.id)}>Crie seus Produtos</button>
+              <img src="https://img.freepik.com/fotos-gratis/gotas-de-oleo-na-imagem-abstrata-padrao-psicodelico-de-agua_23-2148290141.jpg?size=626&ext=jpg" alt=""/>
+              <span><strong>Armazém:</strong> {data.title}</span>
+              <Button  onClick={() => handleParams(data.id)}>Crie seus Produtos</Button>
             </li>
           ))}
         </StorageList>

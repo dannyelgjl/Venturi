@@ -24,7 +24,7 @@ export function* signIn({ payload }) {
     history.push('/dashboard');
     toast.success('Seja Bem-vindo!!🤩🥰🐱‍🏍')
   } catch (error) {
-    toast.error('Credenciais erradas!!🤯');
+    toast.error('Credenciais erradas, verifique seus dados!!🤯');
     yield put(signFailure());
   }
 }
