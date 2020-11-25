@@ -17,6 +17,7 @@ const Storage = () => {
   const history = useHistory();
 
   const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
   const [storages, setStorages] = useState([]);
 
 
@@ -25,14 +26,16 @@ const Storage = () => {
     event.preventDefault();
 
     const response = await api.post('categories', {
-      title
+      title,
+      image
     });
 
     if (response.data) {
       toast.success(<span>Armazém <strong>{response.data.title}</strong> criado com Sucesso! 🤩</span>);
       setTitle("");
+      setImage("");
     }
-  },[title]);
+  },[title, image]);
 
   // Passando dados do armazém por parâmetro
   const handleParams = useCallback((data) => {
@@ -60,13 +63,21 @@ const Storage = () => {
             onChange={event => setTitle(event.target.value)}
             type="text"
           />
+
+          <input
+            placeholder="Adicione uma URL de imagem para criar seu Armazém..."
+            value={image}
+            onChange={event => setImage(event.target.value)}
+            type="text"
+          />
+
           <Button type="submit">Criar</Button>
         </form>
 
         <StorageList>
           {storages.map(data => (
             <li key={data.id}>
-              <img src="https://img.freepik.com/fotos-gratis/gotas-de-oleo-na-imagem-abstrata-padrao-psicodelico-de-agua_23-2148290141.jpg?size=626&ext=jpg" alt=""/>
+              <img src={data.image} alt={data.title}/>
               <span><strong>Armazém:</strong> {data.title}</span>
               <Button  onClick={() => handleParams(data.id)}>Crie seus Produtos</Button>
             </li>
