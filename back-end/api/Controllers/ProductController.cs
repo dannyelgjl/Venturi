@@ -55,8 +55,6 @@ namespace api.Controllers
     {
       if (ModelState.IsValid)
       {
-        //string arquivo = UploadedFile(model);
-
         context.Products.Add(model);
         await context.SaveChangesAsync();
         return model;
@@ -69,13 +67,19 @@ namespace api.Controllers
 
 
     [HttpPut]
-    [Route("")]
+    [Route("{id:int}")]
     public async Task<ActionResult<Product>> Put(
-      [FromServices] DataContext context,
+      [FromServices] DataContext context, int id,
       [FromBody] Product model)
     {
       if (ModelState.IsValid)
       {
+        var product = await context.Products.Include(x => x.Category)
+        .AsNoTracking()
+        .FirstOrDefaultAsync(x => x.Id == id);
+
+        model.Id = product.Id;
+
         context.Products.Update(model);
         await context.SaveChangesAsync();
         return model;
@@ -92,7 +96,6 @@ namespace api.Controllers
     public async Task<string> DeleteById(
       [FromServices] DataContext context, int id)
     {
-
       var product = await context.Products.Include(x => x.Category)
         .AsNoTracking()
         .FirstOrDefaultAsync(x => x.Id == id);
