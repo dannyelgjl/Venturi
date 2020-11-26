@@ -26,8 +26,7 @@ docker run --publish 80:80 dannyelgjl/api-venturi:1.0
 
 # Dados para autenticação
 
-Login: daniel@venturi.com
-Password: daniel
+Login: daniel@venturi.com | Password: daniel
 
 🐱‍🏍🚀🐱‍👤🐱‍💻🤩
 
