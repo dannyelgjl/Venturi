@@ -3,7 +3,7 @@
 Projeto desenvolvido para Venturi 🥰🚀🐱‍💻🐱‍🏍
 
 
-# Inciar o projeto com o Front-end
+# Iniciar o projeto com o Front-end
 
 Execute esse comando para instalatar todas as dependências.
 `yarn install`
@@ -11,7 +11,7 @@ Execute esse comando para instalatar todas as dependências.
 Agora inicie o aplicativo react no prompt de comando passando o comando: `yarn start`
 
 
-# Inciar o projeto com o Back-end
+# Iniciar o projeto com o Back-end
 
 Execute esse comando para instalatar todas as dependências.
 `dotnet restore`
