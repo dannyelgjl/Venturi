@@ -23,4 +23,4 @@ Agora inicie o back-end .dotnet no prompt de comando passando o comando: `dotnet
 Login: daniel@venturi.com
 Password: daniel
 
-🐱‍🏍🚀🐱‍👤�🐱‍💻🤩
+🐱‍🏍🚀🐱‍👤🐱‍💻🤩
