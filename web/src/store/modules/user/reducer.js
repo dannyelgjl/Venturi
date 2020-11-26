@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   profile: null,
 };
 
+// reducer
 export default function user(state = INITIAL_STATE, action) {
   return produce(state, draft => {
     switch (action.type) {

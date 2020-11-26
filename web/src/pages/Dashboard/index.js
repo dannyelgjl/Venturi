@@ -24,9 +24,9 @@ const Product = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // Estados
   const [products, setProducts] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
-
 
   // Soma do produto
   const amount = useSelector(state =>
@@ -69,7 +69,7 @@ const Product = () => {
  const updateProduct = useCallback((data, product) => {
   history.push({
     pathname: '/dashboard',
-    state: {  data, product   },
+    state: {  data, product },
   })
   console.log(data);
 
@@ -80,54 +80,54 @@ const Product = () => {
   <>
     <StyledLink to="/storage">Criar Armazém</StyledLink>
     {isModalVisible ?
-    <Modal onClose={() => setIsModalVisible(false)} >
-      <FormUpdate />
-    </Modal>
+      <Modal onClose={() => setIsModalVisible(false)} >
+        <FormUpdate />
+      </Modal>
       :
-      <ProductList>
-      {products.map(product => (
-         <li key={product.id}>
-         <img
-           src={product.image}
-           alt={product.title}
-           />
-            <div className="container-infor-card">
-              <div className="image-card">
-                <img src={product.category.image} alt={product.category.title}/>
+        <ProductList>
+        {products.map(product => (
+          <li key={product.id}>
+          <img
+            src={product.image}
+            alt={product.title}
+            />
+              <div className="container-infor-card">
+                <div className="image-card">
+                  <img src={product.category.image} alt={product.category.title}/>
+                </div>
+              <div className="text-card">
+                <h2> Armazém: {product.category.title}</h2>
+                  <strong>Produto: {product.title}</strong>
+                  <span>{product.priceFormatted}</span>
+                  <h3>Descrição: {product.description}</h3>
+                </div>
               </div>
-            <div className="text-card">
-              <h2> Armazém: {product.category.title}</h2>
-                <strong>Produto: {product.title}</strong>
-                <span>{product.priceFormatted}</span>
-                <h3>Descrição: {product.description}</h3>
+
+            <div className="container-button-card">
+              <div className="button-update-card">
+                <button  style={{ width:'30px', marginBottom: '5px' }} onClick={() => updateProduct(product)}>
+                    <MdUpdate size={30} style={{ position: 'relative' }} />
+                </button>
+              </div>
+
+              <div className="button-delete-card">
+                <button  style={{ width:'30px', marginBottom: '5px' }} onClick={() => deleteProduct(product.id)}>
+                  <MdDelete size={30} style={{ position: 'relative',  }} />
+                </button>
               </div>
             </div>
 
-          <div className="container-button-card">
-            <div className="button-update-card">
-              <button  style={{ width:'30px', marginBottom: '5px' }} onClick={() => updateProduct(product)}>
-                  <MdUpdate size={30} style={{ position: 'relative' }} />
-              </button>
-            </div>
+            <button type="button" onClick={() => handleAddProduct(product.id)}>
+              <div>
+                <MdAddShoppingCart  size={16} color="#FFF" />
+                {amount[product.id] || 0}
+              </div>
 
-            <div className="button-delete-card">
-              <button  style={{ width:'30px', marginBottom: '5px' }} onClick={() => deleteProduct(product.id)}>
-                <MdDelete size={30} style={{ position: 'relative',  }} />
-              </button>
-            </div>
-          </div>
-
-           <button type="button" onClick={() => handleAddProduct(product.id)}>
-             <div>
-               <MdAddShoppingCart  size={16} color="#FFF" />
-               {amount[product.id] || 0}
-             </div>
-
-             <span>ADICIONAR AO CARRINHO</span>
-           </button>
-       </li>
-      ))}
-    </ProductList>
+              <span>ADICIONAR AO CARRINHO</span>
+            </button>
+        </li>
+        ))}
+      </ProductList>
     }
   </>
   )

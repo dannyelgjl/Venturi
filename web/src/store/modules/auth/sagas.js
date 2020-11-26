@@ -1,10 +1,14 @@
+// Redux-saga-effects
 import { takeLatest, call, put, all } from 'redux-saga/effects';
-import { toast } from 'react-toastify';
-
-import history from '../../../services/history';
-import api from '../../../services/api';
-
+// Actions
 import { signInSuccess, signFailure } from './actions';
+// API
+import api from '../../../services/api';
+// Toast
+import { toast } from 'react-toastify';
+// history
+import history from '../../../services/history';
+
 
 export function* signIn({ payload }) {
   try {
@@ -22,7 +26,7 @@ export function* signIn({ payload }) {
     yield put(signInSuccess(token, user));
 
     history.push('/dashboard');
-    toast.success('Seja Bem-vindo!!🤩🥰🐱‍🏍')
+    toast.success(`Seja Bem-vindo, ${user.name}!!🤩🥰🐱‍🏍`)
   } catch (error) {
     toast.error('Credenciais erradas, verifique seus dados!!🤯');
     yield put(signFailure());

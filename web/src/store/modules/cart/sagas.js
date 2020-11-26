@@ -1,16 +1,20 @@
+// redux-saga-effects
 import { call, select, put, all, takeLatest } from "redux-saga/effects";
-
-import { toast } from "react-toastify";
-
-import { formatPrice } from "../../../util/format";
-
-import api from "../../../services/api";
-
+// Actions
 import {
   addToCartSuccess,
   updateAmountRequest,
   updateAmountSuccess,
 } from "./actions";
+// API
+import api from "../../../services/api";
+// Formador de preços
+import { formatPrice } from "../../../util/format";
+// Toast
+import { toast } from "react-toastify";
+
+
+
 
 function* addToCart({ id }) {
   const productsExists = yield select((state) =>

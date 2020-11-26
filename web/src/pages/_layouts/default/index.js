@@ -1,8 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
+// Component
 import Header from '../../../components/Header';
-
+// PropTypes
+import PropTypes from 'prop-types';
+// Componentes estilizados
 import { Wrapper, Content } from './styles';
 
 export default function DefaultLayout({ children }) {

@@ -1,18 +1,23 @@
 import React from 'react';
+// Redux
 import { useSelector, useDispatch } from 'react-redux';
+// react-router-dom
+import { Link } from 'react-router-dom';
+// Action redux
+import { signOut } from '../../store/modules/auth/actions';
+// Icons
 import { MdShoppingBasket } from 'react-icons/md';
 import { FiLogOut } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
-
+// Logo
 import venturiV from '../../assets/images/venturiV.png';
-
+// Componentes estilizados
 import { Container, Content, Profile, SignOut, Cart } from './styles';
-import { signOut } from '../../store/modules/auth/actions';
 
-export default function Header({ title }) {
+
+export default function Header() {
   const dispatch = useDispatch();
 
-
+  // Infors cartSize && profile
   const cartSize = useSelector(state => state.cart.length);
   const profile = useSelector(state => state.user.profile);
 

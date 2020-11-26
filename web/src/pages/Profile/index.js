@@ -8,22 +8,22 @@ import { SiInstagram  } from 'react-icons/si';
 import { Repositories, RepositoryInfo } from './styles';
 
 export default function Profile() {
-  // States
+  // Estados
   const [repositories, setRepositories] = useState([]);
   const [myUser, setMyUser] = useState([]);
 
   // Carregando dados dos Repositórios
   useEffect(() => {
       async function loadRepositories() {
-        const response = await api.get('/users/dannyelgjl/repos');
+        const response = await api.get('/users/dannyelgjl/repos?size=33');
 
         const request = response.data;
 
+        console.log(request);
         setRepositories(request);
       }
 
       loadRepositories();
-
   }, []);
 
   // Carregando dados do meu Perfil
@@ -54,7 +54,7 @@ export default function Profile() {
     </RepositoryInfo>
 
     <Repositories>
-      <h1>Meu Repositórios 🐱‍🏍🐱‍💻🚀🐱‍👤</h1>
+      <h1>Meus Repositórios 🐱‍🏍🐱‍💻🚀🐱‍👤</h1>
       {repositories.map(repository =>(
         <a key={repository.full_name} target="_blank" href={repository.html_url}>
         <img src={repository.owner.avatar_url} alt="" />

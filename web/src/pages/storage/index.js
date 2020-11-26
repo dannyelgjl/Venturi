@@ -1,21 +1,19 @@
 import React, { useState, useCallback, useEffect } from 'react';
-
 // Component
 import Button from '../../components/Button';
-
+// react-router-dom
 import { useHistory } from 'react-router-dom';
-
 // Api
 import api from '../../services/api';
-
+// Toast
 import { toast } from 'react-toastify';
-
-// Stylizations
+// Componentes estilizados
 import { StorageList, Container } from './styles';
 
 const Storage = () => {
   const history = useHistory();
 
+  // Estados
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [storages, setStorages] = useState([]);

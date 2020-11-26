@@ -12,6 +12,7 @@ export const Form = styled.form`
     border-radius: 50%;
     border: 2px solid #1472b6;
     margin-bottom: 16px;
+    object-fit: cover;
     transition: transform 0.5s;
 
     &:hover {
@@ -26,6 +27,7 @@ export const Form = styled.form`
      input {
       width: 290px;
       margin-bottom: 8px;
+
       transition: transform 0.5s;
 
       &:hover {

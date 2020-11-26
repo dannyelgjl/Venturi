@@ -1,6 +1,7 @@
 import React from 'react';
+// PropTypes
 import PropTypes from 'prop-types';
-
+// Componentes estilizados
 import { Wrapper, Content } from './styles';
 
 export default function AuthLayout({ children }) {

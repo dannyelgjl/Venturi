@@ -1,17 +1,19 @@
 import React, { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { Link } from 'react-router-dom';
-
+// Component
 import Button from '../../components/Button';
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
+// Action
+import { signInRequest } from '../../store/modules/auth/actions';
+// UnForm
 import { Form, Input } from '@rocketseat/unform';
+// Yup
 import * as Yup from 'yup';
-
+// Venturi Logo
 import venturiLogo from '../../assets/images/venturi.jpg';
 
 
-import { signInRequest } from '../../store/modules/auth/actions';
-
+// Validações de erros
 const schema = Yup.object().shape({
   email: Yup.string()
     .email()
@@ -19,10 +21,13 @@ const schema = Yup.object().shape({
   password: Yup.string().required('A senha é obrigatória'),
 });
 
-const SingIn = ({ error }) => {
+const SingIn = () => {
   const dispatch = useDispatch();
+
+  // Loading do botão de login
   const loading = useSelector(state => state.auth.loading);
 
+  // Função para logar na aplicação
   const handleSubmit = useCallback(({ email, password }) => {
     dispatch(signInRequest(email, password));
   }, []);
@@ -35,7 +40,6 @@ const SingIn = ({ error }) => {
           <Input name="password" type="password" placeholder="Senha" />
 
           <Button type="submit">{ loading ? 'Carregando...' : 'Entrar' }</Button>
-          <Link to="/register">Criar conta</Link>
         </Form>
     </>
   );

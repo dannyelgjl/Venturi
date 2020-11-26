@@ -24,8 +24,7 @@ const CreateProduct = () => {
   // Dados que estão vindo por parâmetro
   const categoryDataParams = location.state.data;
 
-  console.log(categoryDataParams);
-
+ // Função para criar Produto
   const handleSubmit = useCallback(async (event) => {
     event.preventDefault();
 

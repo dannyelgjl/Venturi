@@ -45,7 +45,6 @@ export const ProductList = styled.ul`
       flex-direction: row;
       display: flex;
 
-
       .image-card {
       > img {
         width: 44px;
@@ -115,6 +114,20 @@ export const ProductList = styled.ul`
       margin-top: 18px;
 
       .button-update-card {
+        .tooltip-update {
+
+          box-shadow: 0 0 5px 0 rgba(0,0,0,0.3);
+          width: 100px;
+          background: #1472b6;
+          padding: 3px 4px;
+          h5 {
+
+            color: #fff;
+            text-align: center;
+            font-size: 12px;
+          }
+        }
+
         > button {
           background: #1472b6;
           transition: transform 0.5s;

@@ -55,7 +55,7 @@ export const Cart = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  transition: opacity 0.2;
+  transition: opacity 0.2s;
 
   &:hover {
     opacity: 0.7;
@@ -76,7 +76,6 @@ export const Cart = styled(Link)`
     }
   }
 `;
-
 
 export const Profile = styled.div`
   display: flex;
@@ -107,6 +106,11 @@ export const Profile = styled.div`
       margin-top: 2px;
       font-size: 12px;
       color: #999;
+      transition: color 0.2s;
+
+        &:hover {
+        color: ${darken(0.03, '#1472b6')};
+      }
     }
   }
 `;

@@ -1,10 +1,12 @@
 import React from 'react';
+// react-router-dom
 import { Route, Redirect } from 'react-router-dom';
+// PropTypes
 import PropTypes from 'prop-types';
-
+// layouts
 import AuthLayout from '../pages/_layouts/auth';
 import DefaultLayout from '../pages/_layouts/default';
-
+// Redux
 import { store } from '../store';
 
 export default function RouteWrapper({
@@ -14,6 +16,7 @@ export default function RouteWrapper({
 }) {
   const { signed } = store.getState().auth;
 
+  // Verificando se tem um usuário logado ou não
   if (!signed && isPrivate) {
     return <Redirect to="/" />;
   }

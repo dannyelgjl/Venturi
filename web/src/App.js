@@ -1,18 +1,22 @@
 import React from 'react';
+// redux-persist
 import { PersistGate } from 'redux-persist/integration/react';
+// Redux
 import { Provider } from 'react-redux';
+// redux store
+import { store, persistor } from './store';
+// react-router-dom
 import { Router } from 'react-router-dom';
-
+// routes
+import Routes from './routes';
+//history
+import history from './services/history';
+// Toast
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
-import Routes from './routes';
-import history from './services/history';
-
-import { store, persistor } from './store';
-
+// GlobalStyle
 import GlobalStyle from './styles/global';
+
 
 function App() {
   return (
@@ -20,7 +24,7 @@ function App() {
       <PersistGate persistor={persistor}>
       <ToastContainer
         position="top-right"
-        autoClose={4000}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
