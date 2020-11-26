@@ -40,18 +40,18 @@ const FormUpdate = () => {
       });
 
       if (response.data) {
-        console.log(response.data);
         toast.success('Dados alterados com Sucesso!!');
         history.push('/');
       }
     }catch (err) {
-      console.log(err);
+      toast.error('Verifique se você não deixou algum campo em branco!!😲');
     }
   }, [title, description, price, productDataParams, stock, history, image, categoryId]);
 
   return (
     <Form onSubmit={handleSubmitUpdate}>
       <img src={image} alt={title}/>
+        <h2>Altere os dados do produto: {productDataParams.title}</h2>
         <div className="container-input-row">
           <div className="input-left">
             <label>Nome do Produto</label>

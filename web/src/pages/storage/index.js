@@ -21,7 +21,8 @@ const Storage = () => {
 
   // Criando armazém
   const handleSubmit = useCallback(async (event) => {
-    event.preventDefault();
+    try {
+      event.preventDefault();
 
     const response = await api.post('categories', {
       title,
@@ -33,6 +34,10 @@ const Storage = () => {
       setTitle("");
       setImage("");
     }
+    }catch (err) {
+      toast.error('Verifique se os dados estão corretos ou se você deixou algum campo vazio 😉');
+    }
+
   },[title, image]);
 
   // Passando dados do armazém por parâmetro
@@ -41,8 +46,6 @@ const Storage = () => {
       pathname: '/createproduct',
       state: {  data  },
     })
-
-    console.log(data);
   }, [])
 
   // Listando Armazéns

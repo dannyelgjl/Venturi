@@ -26,21 +26,27 @@ const CreateProduct = () => {
 
  // Função para criar Produto
   const handleSubmit = useCallback(async (event) => {
-    event.preventDefault();
+    try {
+      event.preventDefault();
 
-    const response = await api.post('products', {
-      title,
-      description,
-      image,
-      price: parseFloat(price),
-      categoryId: parseInt(categoryDataParams.id),
-      stock: parseInt(stock),
-    });
+      const response = await api.post('products', {
+        title,
+        description,
+        image,
+        price: parseFloat(price),
+        categoryId: parseInt(categoryDataParams.id),
+        stock: parseInt(stock),
+      });
 
-    if (response.data) {
-      toast(<span>🚀 Produto <strong>{response.data.title}</strong> criado com Sucesso!!🚀</span>)
-      history.push('/dashboard');
+      if (response.data) {
+        toast(<span>🚀 Produto <strong>{response.data.title}</strong> criado com Sucesso!!🚀</span>)
+        history.push('/dashboard');
+      }
+
+    }catch(err) {
+      toast.error('Verifique se os dados estão corretos ou se você deixou algum campo vazio 😉');
     }
+
   }, [title, description, price, categoryDataParams, stock, history, image]);
 
   return (
@@ -64,7 +70,7 @@ const CreateProduct = () => {
             />
           <input
             placeholder="Preço"
-            type="text"
+            type="number"
             value={price}
             onChange={e => setPrice(e.target.value)}
             />

@@ -19,7 +19,6 @@ export default function Profile() {
 
         const request = response.data;
 
-        console.log(request);
         setRepositories(request);
       }
 

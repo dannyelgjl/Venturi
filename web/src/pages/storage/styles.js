@@ -15,7 +15,6 @@ export const Container = styled.div`
         transform: scale(1.1);
       }
 
-
       &::placeholder {
         color: #666360;
       }
@@ -30,7 +29,7 @@ export const StorageList = styled.ul`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
-  margin: 20px 0 20px;
+  margin: 60px 0 20px;
   list-style: none;
 
   li {

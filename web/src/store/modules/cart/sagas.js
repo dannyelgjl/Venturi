@@ -14,8 +14,6 @@ import { formatPrice } from "../../../util/format";
 import { toast } from "react-toastify";
 
 
-
-
 function* addToCart({ id }) {
   const productsExists = yield select((state) =>
     state.cart.find((p) => p.id === id)

@@ -19,6 +19,10 @@ export const Form = styled.form`
       transform: scale(1.2);
     }
   }
+  h2 {
+    color: #fff;
+    margin: 0 0 10px 0;
+  }
 
   .container-input-row {
       flex-direction: row;

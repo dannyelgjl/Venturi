@@ -53,6 +53,7 @@ const Cart = () => {
       history.push('/dashboard');
   }, []);
 
+
   return (
     <Container style={{ background: "#fff", padding: 30, borderRadius: 5 }}>
       <ProductTable>

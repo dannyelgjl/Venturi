@@ -71,7 +71,6 @@ const Product = () => {
     pathname: '/dashboard',
     state: {  data, product },
   })
-  console.log(data);
 
    setIsModalVisible(true);
   }, []);
