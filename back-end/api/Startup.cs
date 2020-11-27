@@ -30,7 +30,10 @@ namespace api
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
+      // Conexão com o banco de dados
+      services.AddDbContext<DataContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
+      //services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
       services.AddScoped<DataContext, DataContext>();
       services.AddControllers();
       services.AddCors(options => options.AddDefaultPolicy(builder => builder.WithOrigins("http://localhost:3000")
