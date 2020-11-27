@@ -43,7 +43,7 @@ Utilize o comando a seguir para criar um Container com a imagem do banco(Postgre
 Para verificar se deu tudo certo com seu container e ele está ativo, utilize o comando: <strong>docker ps</strong>
 
 <h1 align="center">
-  <img src="/readme-assets/dockerPS.PNG" width="600" height="100"/>
+  <img src="/readme-assets/dockerPs.PNG" width="600" height="100"/>
 </h1>
 
 Caso os campos acima estejam vazios, utilize o comando: <strong>docker start postgres</strong>
