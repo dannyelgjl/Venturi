@@ -7,8 +7,8 @@ export const Form = styled.form`
   flex-direction: column;
 
   img {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     border: 2px solid #1472b6;
     margin-bottom: 16px;
@@ -108,6 +108,7 @@ export const Form = styled.form`
     }
 
     button {
-      width: 250px;
+      width: 150px;
+      height: 40px
     }
 `;
