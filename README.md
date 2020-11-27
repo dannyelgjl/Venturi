@@ -88,11 +88,13 @@ Agora já podemos partir para o back-end 🐱‍🏍
 Execute esse comando para instalatar todas as dependências caso elas não sejam instaladas automaticamente.
 `dotnet restore`
 
-Nossas migrations já foram realizdas,
+Nossas migrations já foram realizadas,
 
 Então, você só precisa utilizar o seguinte comando: <strong>dotnet ef database update</strong>
 
-Esse comando fará com que atualize a nossa database 😉
+<strong>Obs:</strong> Caso não tenha o dotnet-ef instalado em sua máquina, use o comando a seguir: <strong>dotnet tool install --global dotnet-ef</strong> 😉 agora sim, podemos utilizar o comando: <strong>dotnet ef database update</strong>
+
+Esse comando fará com que a nossa database seja atualizada 😉
 
 Agora inicie o back-end .dotnet no prompt de comando passando o comando: `dotnet run`
 
