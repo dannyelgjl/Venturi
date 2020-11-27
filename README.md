@@ -43,7 +43,7 @@ Utilize o comando a seguir para criar um Container com a imagem do banco(Postgre
 Para verificar se deu tudo certo com seu container e ele está ativo, utilize o comando: <h2>docker ps</h2>
 
 <h1 align="center">
-  <img src="/readme-assets/dockerPS.PNG" width="300"/>
+  <img src="/readme-assets/dockerPS.PNG" width="600" height="100"/>
 </h1>
 
 Caso os campos acima estejam vazios, utilize o comando: <h2>docker start postgres</h2>
@@ -62,10 +62,14 @@ Se todos os passos acima deram certo, faça a conexão com o Postbird
 
 ## Dados para fazer a conexão
 
-Host: localhost
+<h3>Host: localhost
+<br>
 Port: 5432
+<br>
 Username: postgres
+<br>
 password: postgres
+</h3>
 
 Após preencher esses dados, basta clicar no botão <h2>Connect</h2>
 
