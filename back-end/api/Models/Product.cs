@@ -10,7 +10,7 @@ namespace api.Models
 
     [Required(ErrorMessage = "Este campo é obrigatório")]
     [MaxLength(60, ErrorMessage = "Este campo deve conter entre 3 e 60 caracteres")]
-    [MinLength(3, ErrorMessage = "Este campo deve conter entre 3 e 60 caracteres")]
+    [MinLength(1, ErrorMessage = "Este campo deve conter entre 3 e 60 caracteres")]
 
     public string Title { get; set; }
 
@@ -28,7 +28,7 @@ namespace api.Models
     public decimal Price { get; set; }
 
 
-    [Range(1, 10000, ErrorMessage = "Máximo de 10000 produtos")]
+    [Range(1, int.MaxValue, ErrorMessage = "Máximo de 10000 produtos")]
 
     public int Stock { get; set; }
 
